@@ -1,0 +1,12 @@
+.gitignore
+.dockerignore
+.env
+.DS_Store
+*.log
+
+.git
+.idea
+logs
+**/node_modules/
+**/dist
+npm-debug.log
