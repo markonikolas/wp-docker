@@ -1,7 +1,7 @@
 FROM php:8.2-fpm-alpine
 
 RUN apk update && \
-    apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community add \
+    apk --no-cache add \
     php82-bcmath \
     php82-exif \
     php82-iconv \
