@@ -1,14 +1,16 @@
 FROM php:8.2-fpm-alpine
 
-RUN apk update && \
-    apk --no-cache add \
-    php82-bcmath \
-    php82-exif \
-    php82-iconv \
-    php82-intl \
-    php82-opcache \
-    php82-pecl-igbinary \
-    php82-pecl-imagick \
-    php82-shmop \
-    php82-zip
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+    mysqli \
+    pdo_mysql \
+    bcmath \
+    exif \
+    intl \
+    imagick \
+    igbinary \
+    opcache \
+    shmop \
+    zip
