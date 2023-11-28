@@ -24,6 +24,7 @@ services:
       - db
     ports:
       - "9000:9000"
+    user: 1000:1000
     environment:
       <<: *env
     volumes:

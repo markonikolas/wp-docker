@@ -42,10 +42,5 @@
             "johnpbloch/wordpress-core-installer": true
         },
         "vendor-dir": "wordpress/vendor"
-    },
-    "autoload": {
-        "psr-4": {
-            "MyWordPress\\": "wordpress/"
-        }
     }
 }
