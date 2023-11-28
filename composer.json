@@ -8,7 +8,6 @@
         }
     ],
     "require": {
-        "wpackagist-plugin/akismet":"dev-trunk",
         "wpackagist-theme/blockbase": "^3.1",
         "johnpbloch/wordpress": "^6.4"
     },
@@ -24,9 +23,6 @@
     ],
     "extra": {
         "installer-paths": {
-            "wordpress/wp-content/mu-plugins/{$name}/": [
-                "wpackagist-plugin/akismet"
-            ],
             "wordpress/wp-content/plugins/{$name}/": [
                 "type:wordpress-plugin"
             ],
