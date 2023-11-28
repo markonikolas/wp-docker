@@ -1,0 +1,51 @@
+{
+    "name": "markonikolas/wordpress",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marko Nikolaš",
+            "email": "36996299+markonikolas@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/akismet":"dev-trunk",
+        "wpackagist-plugin/wordpress-seo":">=7.0.2",
+        "wpackagist-theme/hueman":"*",
+        "johnpbloch/wordpress": "^6.4"
+    },
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "wordpress/wp-content/mu-plugins/{$name}/": [
+                "wpackagist-plugin/akismet"
+            ],
+            "wordpress/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "wordpress/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "johnpbloch/wordpress-core-installer": true
+        },
+        "vendor-dir": "wordpress/vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyWordPress\\": "wordpress/"
+        }
+    }
+}

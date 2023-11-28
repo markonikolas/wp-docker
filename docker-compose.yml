@@ -1,34 +1,61 @@
+x-env: &env
+  MYSQL_USER: wordpress
+  MYSQL_PASSWORD: wordpress
+  MYSQL_DATABASE: wordpress
+  MYSQL_HOST: db
+  MYSQL_ROOT_PASSWORD: root
+
 services:
   nginx:
     image: nginx:alpine3.18-slim
     restart: unless-stopped
     ports:
-      - "8989:80"
-    links:
-      - php
-      - db
+      - "8888:80"
     volumes:
       - ./logs/nginx:/var/log/nginx
       - ./config:/etc/nginx/conf.d/
-      - ./wordpress:/var/www/wordpress
+      - ./wordpress:/var/www/html
 
-  php:
-    build:
-      context: php
+  wp:
+    image: wordpress:php8.2-fpm-alpine
     depends_on:
+      - db
+    links:
       - db
     ports:
       - "9000:9000"
+    environment:
+      <<: *env
     volumes:
-      - ./wordpress:/var/www/wordpress
+      - ./wordpress:/var/www/html
 
   db:
-    image: alpinelinux/mariadb
+    image: mariadb:10.8
     restart: always
     environment:
-      MARIADB_USER: wordpress
-      MARIADB_PASSWORD: wordpress
-      MARIADB_HOST: db
-      MARIADB_ROOT_PASSWORD: root
+      <<: *env
     volumes:
       - /var/lib/mysql
+
+  wp_cli:
+    image: wordpress:cli-php8.2
+    depends_on:
+      - wp
+      - db
+    user: www-data:www-data
+    environment:
+      <<: *env
+    working_dir: /var/www/html
+    volumes:
+      - ./wordpress:/var/www/html
+
+  composer:
+    image: composer:2.6.5
+    working_dir: /var/www/html
+    user: www-data:www-data
+    depends_on:
+      - wp
+    volumes:
+      - ./composer.json:/var/www/html/composer.json
+      - ./composer.lock:/var/www/html/composer.lock
+    command: ["composer", "install", "--prefer-dist", "--optimize-autoloader"]
