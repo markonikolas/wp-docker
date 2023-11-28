@@ -14,7 +14,7 @@ services:
     volumes:
       - ./logs/nginx:/var/log/nginx
       - ./config:/etc/nginx/conf.d/
-      - ./wordpress:/var/www/html
+      - ./wordpress:/var/www/html/wordpress
 
   wp:
     image: wordpress:php8.2-fpm-alpine
@@ -24,11 +24,11 @@ services:
       - db
     ports:
       - "9000:9000"
-    user: 1000:1000
     environment:
       <<: *env
     volumes:
-      - ./wordpress:/var/www/html
+      - ./wordpress:/var/www/html/wordpress
+      - vendor:/var/www/html/wordpress/vendor
 
   db:
     image: mariadb:10.8
@@ -46,17 +46,21 @@ services:
     user: www-data:www-data
     environment:
       <<: *env
-    working_dir: /var/www/html
+    working_dir: /var/www/html/wordpress
     volumes:
-      - ./wordpress:/var/www/html
+      - ./wordpress:/var/www/html/wordpress
 
   composer:
     image: composer:2.6.5
-    working_dir: /var/www/html
-    user: www-data:www-data
+    working_dir: /var/www/html/
     depends_on:
       - wp
     volumes:
+      - ./wordpress:/var/www/html/wordpress
       - ./composer.json:/var/www/html/composer.json
       - ./composer.lock:/var/www/html/composer.lock
+      - vendor:/var/www/html/wordpress/vendor
     command: ["composer", "install", "--prefer-dist", "--optimize-autoloader"]
+
+volumes:
+  vendor:
