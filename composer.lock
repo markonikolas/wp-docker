@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "deb81ead769949f5060f094a48c6bd0b",
+    "content-hash": "88d77cca786f822a37e90aaed4b5a91d",
     "packages": [
         {
             "name": "composer/installers",
@@ -300,25 +300,6 @@
             "time": "2020-04-16T21:44:57+00:00"
         },
         {
-            "name": "wpackagist-plugin/akismet",
-            "version": "dev-trunk",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/akismet/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.zip?timestamp=1700774828"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/akismet/",
-            "time": "2023-11-23T21:27:08+00:00"
-        },
-        {
             "name": "wpackagist-theme/blockbase",
             "version": "3.1.16",
             "source": {
@@ -340,9 +321,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wpackagist-plugin/akismet": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
