@@ -28,7 +28,6 @@ services:
       <<: *env
     volumes:
       - ./wordpress:/var/www/html/wordpress
-      - vendor:/var/www/html/wordpress/vendor
 
   db:
     image: mariadb:10.8
@@ -43,9 +42,9 @@ services:
     depends_on:
       - wp
       - db
-    user: www-data:www-data
     environment:
       <<: *env
+    user: 1000:1000
     working_dir: /var/www/html/wordpress
     volumes:
       - ./wordpress:/var/www/html/wordpress
@@ -53,14 +52,12 @@ services:
   composer:
     image: composer:2.6.5
     working_dir: /var/www/html/
+    user: 1000:1000
     depends_on:
       - wp
     volumes:
       - ./wordpress:/var/www/html/wordpress
       - ./composer.json:/var/www/html/composer.json
       - ./composer.lock:/var/www/html/composer.lock
-      - vendor:/var/www/html/wordpress/vendor
     command: ["composer", "install", "--prefer-dist", "--optimize-autoloader"]
 
-volumes:
-  vendor:

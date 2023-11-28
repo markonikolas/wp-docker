@@ -9,8 +9,7 @@
     ],
     "require": {
         "wpackagist-plugin/akismet":"dev-trunk",
-        "wpackagist-plugin/wordpress-seo":">=7.0.2",
-        "wpackagist-theme/hueman":"*",
+        "wpackagist-theme/blockbase": "^3.1",
         "johnpbloch/wordpress": "^6.4"
     },
     "repositories":[

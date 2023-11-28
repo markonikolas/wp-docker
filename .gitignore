@@ -18,7 +18,7 @@ logs
 /wordpress/wp-content/themes/*
 
 # Include custom themes here
-!/wordpress/wp-content/themes/hueman
+!/wordpress/wp-content/themes/blockbase
 
 ## Plugins: include the directory, exclude all subdirectories except those specified
 !/wordpress/wp-content/plugins/
